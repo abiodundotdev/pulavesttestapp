@@ -40,7 +40,7 @@ syncronize app and project gradle
 
 > To run the the test run:
 ```
-run both unit and instrumentation test from androd studio
+run both unit and instrumentation test from android studio
 ```
 
 > IMAGES

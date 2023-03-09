@@ -38,10 +38,10 @@ clone repository and open in Android studio
 syncronize app and project gradle
 ```
 
-<!-- > To run the the test run:
+> To run the the test run:
 ```
 run both unit and instrumentation test from androd studio
-``` -->
+```
 
 > IMAGES
 <p float="left">

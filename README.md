@@ -6,6 +6,10 @@ A project made for PULA android kotlin test
 
 This repository is for PULA Android Assessment test
 
+### NB:
+The test contain only few test cases on the login screen, and the repository too this is just to showcase test ability, projects with proper test cases can be presented on request
+Also due to deadline, the figma designs are not properly implemented on the app, proper app with over 90% replicated design can be presented on request 
+
 ### The codes follow the SOLID design principles and Clean Architecture
 
 #### This code include both repository and ui test
@@ -49,7 +53,6 @@ syncronize app and project gradle
 run both unit and instrumentation test from android studio
 ```
 
-### NB: The test contain only few test cases on the login screen, and the repository too this is just to showcase test ability, projects with proper test cases can be presented on request
 
 > IMAGES
 <p float="left">

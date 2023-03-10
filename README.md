@@ -48,7 +48,7 @@ run both unit and instrumentation test from android studio
 > IMAGES
 <p float="left">
 <img src="https://raw.githubusercontent.com/abiodundotdev/pulavesttestapp/main/docimg/1.png?raw=true"  width= "300px" height ="500px" />
-<img src="https://raw.githubusercontent.com/abiodundotdev/icecommercialpowertest/master/docimg/8.png?raw=true" width= "300px" height ="500px"  /> 
+<img src="https://raw.githubusercontent.com/abiodundotdev/pulavesttestapp/main/docimg/8.png?raw=true" width= "300px" height ="500px"  /> 
 <img src="https://raw.githubusercontent.com/abiodundotdev/pulavesttestapp/main/docimg/2.png?raw=true"  width= "300px" height ="500px" />
  <img src="https://raw.githubusercontent.com/abiodundotdev/pulavesttestapp/main/docimg/3.png?raw=true" width= "300px" height ="500px" />
 <img src="https://raw.githubusercontent.com/abiodundotdev/pulavesttestapp/main/docimg/4.png?raw=true" width= "300px" height ="500px" />

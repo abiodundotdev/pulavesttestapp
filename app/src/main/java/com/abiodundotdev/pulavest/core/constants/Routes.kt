@@ -7,6 +7,7 @@ class Routes {
         const val Register : String = "register"
         const val DashBoard : String = "dashboard"
         const val Invest : String = "invest"
+        const val Splash : String = "splash"
         const val InvestmentDetails : String = "investment"
 
     }

@@ -11,8 +11,10 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -29,7 +31,7 @@ fun FilledButton(
 ) {
     Button(
         onClick = onClick,
-        modifier =  Modifier.fillMaxWidth().apply{modifier},
+        modifier =  Modifier.fillMaxWidth().composed{modifier},
     ) {
         Text(text = text,
             modifier =  Modifier.padding(horizontal =  60.dp, vertical = 15.dp),
@@ -59,13 +61,15 @@ fun GhostButton(
         colors = ButtonDefaults.buttonColors(
             backgroundColor = Color.White,
             contentColor = MaterialTheme.colors.primary,
-
+            disabledBackgroundColor = Color.White,
+            disabledContentColor = MaterialTheme.colors.primary,
         ),
         ) {
         Text(text = text,
-            modifier =  Modifier.padding(horizontal =  60.dp, vertical = 15.dp),
-            color = Color.Green,
-            style = MaterialTheme.typography.button,
+           // modifier =  Modifier.padding(horizontal =  60.dp, vertical = 15.dp),
+            textAlign= TextAlign.Center,
+            color = MaterialTheme.colors.primary,
+            style = MaterialTheme.typography.caption,
         )
     }
 }

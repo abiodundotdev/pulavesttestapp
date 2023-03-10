@@ -31,8 +31,8 @@ class AuthViewModel @Inject constructor
     )  : ViewModel() {
     private val _uiState = MutableStateFlow<LoginState>(LoginState.Initial());
     val loginState : StateFlow<LoginState> = _uiState.asStateFlow();
-
-    fun login(loginRequestData : LoginRequestData){
+    val navigator = appNavigator;
+    fun login(loginRequestData : LoginRequestData) {
         viewModelScope.launch(Dispatchers.Main) {
             _uiState.emit(LoginState.Loading());
             try {
@@ -56,6 +56,7 @@ class AuthViewModel @Inject constructor
 
             }
         }
+    }
         fun register(registerRequestData : RegisterRequestData){
             viewModelScope.launch(Dispatchers.Main) {
                 _uiState.emit(LoginState.Loading());
@@ -65,11 +66,9 @@ class AuthViewModel @Inject constructor
                     if (response.isSuccessful) {
                         val body = response.body()
                         body?.let {
-                            Log.e("app_error", "something went wrong)");
                             _uiState.emit(LoginState.Success(body));
+                            appNavigator.navigate(Routes.Login)
                         }
-                        Log.e("app_error", "something went wrong before navigation");
-                        appNavigator.navigate(Routes.Login)
                     }
                 } catch (e: Exception) {
                     Log.e("app_error", "something went wrong in error stack");
@@ -80,7 +79,6 @@ class AuthViewModel @Inject constructor
 
                 }
             }
-        }
     }
 
 }

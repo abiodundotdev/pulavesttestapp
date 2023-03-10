@@ -12,8 +12,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.BlendMode.Companion.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
@@ -39,6 +41,8 @@ fun AppTextField(
     maxLines: Int = Int.MAX_VALUE,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     shape: Shape = RoundedCornerShape(15.dp),
+    isError: Boolean = false,
+    testTag : String = "",
     colors: TextFieldColors = TextFieldDefaults.outlinedTextFieldColors()
 ) {
     Column(modifier = modifier
@@ -53,12 +57,12 @@ fun AppTextField(
             value = value,
             onValueChange = onValueChange,
             modifier = Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth().testTag(testTag).composed {modifier},
             singleLine = singleLine,
             textStyle = textStyle,
             placeholder = placeholder,
             leadingIcon = leadingIcon,
-            isError = validator.isNotEmpty(),
+            isError = isError,
             visualTransformation = visualTransformation,
             keyboardOptions = keyboardOptions,
             keyboardActions = keyboardActions,
@@ -67,7 +71,7 @@ fun AppTextField(
             shape = shape,
             colors = colors
         )
-        if (validator.isNotEmpty()) {
+        if (isError) {
             Text(
                 text = validator,
                 color = MaterialTheme.colors.error,

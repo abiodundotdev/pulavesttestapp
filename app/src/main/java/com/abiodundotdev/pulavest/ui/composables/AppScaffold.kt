@@ -9,6 +9,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.abiodundotdev.pulavest.ui.features.auth.AuthViewModel
+import javax.inject.Inject
 
 @Composable
 fun AppScaffold(
@@ -26,11 +29,13 @@ fun AppScaffold(
 fun AppTopAppBar(
     title : String
 ) {
+    var authViewModel = hiltViewModel<AuthViewModel>();
+
     TopAppBar(
         title = { Text(text = title) },
         elevation = 0.dp,
         backgroundColor = Color.White,
-        navigationIcon = { IconButton(onClick = { },)
+        navigationIcon = { IconButton(onClick = { authViewModel.navigator.goBack()},)
         {
             Icon(
                 Icons.Rounded.ArrowBack,
@@ -45,11 +50,13 @@ fun AppTopAppBar(
 fun PAppTopAppBar(
     title: @Composable () -> Unit,
 ) {
+    var authViewModel = hiltViewModel<AuthViewModel>();
+
     TopAppBar(
         title = title,
         elevation = 0.dp,
         backgroundColor = Color.White,
-        navigationIcon = { IconButton(onClick = { },)
+        navigationIcon = { IconButton(onClick = { authViewModel.navigator.goBack()}, )
         {
             Icon(
                 Icons.Rounded.ArrowBack,

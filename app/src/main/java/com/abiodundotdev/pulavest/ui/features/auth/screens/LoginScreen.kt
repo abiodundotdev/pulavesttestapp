@@ -22,10 +22,7 @@ import com.abiodundotdev.pulavest.core.constants.Routes
 import com.abiodundotdev.pulavest.core.utils.FormValidator
 import com.abiodundotdev.pulavest.domain.requestdatas.LoginRequestData
 import com.abiodundotdev.pulavest.domain.requestdatas.RegisterRequestData
-import com.abiodundotdev.pulavest.ui.composables.AppScaffold
-import com.abiodundotdev.pulavest.ui.composables.AppTextField
-import com.abiodundotdev.pulavest.ui.composables.AppTopAppBar
-import com.abiodundotdev.pulavest.ui.composables.FilledButton
+import com.abiodundotdev.pulavest.ui.composables.*
 import com.abiodundotdev.pulavest.ui.features.auth.AuthViewModel
 import com.abiodundotdev.pulavest.ui.features.auth.LoginState
 import com.abiodundotdev.pulavest.ui.features.investment.screens.InvestmentViewModel
@@ -66,8 +63,9 @@ fun LoginScreen( investmentViewModel: InvestmentViewModel, authViewModel: AuthVi
             AppTextField(value= loginRequestData.value.email, onValueChange = {_username ->
                 loginRequestData.value =   loginRequestData.value.copy(email = _username)
             },  label =  "Username",
+                isError = loginRequestData.value.isEmailValid(),
                 validator = FormValidator.empty(loginRequestData.value.email, "Username"),
-                modifier = Modifier.testTag(ComposableTags.USERNAME_FORM_FIELD)
+                testTag = ComposableTags.USERNAME_FORM_FIELD
             )
 
             Spacer(modifier = Modifier.height(25.dp))
@@ -75,22 +73,29 @@ fun LoginScreen( investmentViewModel: InvestmentViewModel, authViewModel: AuthVi
             AppTextField(value= loginRequestData.value.password, onValueChange = {_password ->
                 loginRequestData.value =   loginRequestData.value.copy(password = _password)
             }, label =  "Password",
+                isError = loginRequestData.value.isPasswordValid(),
                 validator = FormValidator.empty(loginRequestData.value.password, "Password") ,
-                modifier = Modifier.testTag(ComposableTags.PASSWORD_FORM_FIELD)
-
+                testTag = ComposableTags.PASSWORD_FORM_FIELD
             )
-            
 
-            Spacer(modifier = Modifier.height(25.dp))
+            ColumnGap(size = 15.0.dp)
+
+            TextButton(onClick = { authViewModel.navigator.navigate(Routes.Register)},
+            modifier = Modifier.align(Alignment.End)
+            ) {
+                Text(text = "Click here to register")
+            }
+
+            ColumnGap(size = 15.0.dp)
 
             when(loginState) {
                 is LoginState.Loading -> CircularProgressIndicator(
                     modifier = Modifier.testTag("loading")
-
                 )
                 is LoginState.Error -> Text("error occur")
                 is LoginState.Initial -> FilledButton(onClick = {
                    if(!loginRequestData.value.isValid()){
+                       loginRequestData.value = loginRequestData.value.copy(isValidated = true)
                        coroutineScope.launch {
                            scaffoldState.snackbarHostState.showSnackbar(
                                message = "Kindly validate form before submission",

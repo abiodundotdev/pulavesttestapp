@@ -105,7 +105,9 @@ fun InvestmentCard(investment: Investment) {
             Spacer(modifier = Modifier.height(10.dp))
             Text(text = "${investment.percentage}%  in ${investment.duration} Months", style = MaterialTheme.typography.overline.copy(fontSize = 8.0.sp ), fontWeight = FontWeight.Thin)
             Spacer(modifier = Modifier.height(10.dp))
-            GhostButton(onClick = { /*TODO*/ }, text =  "Invest now", fractionalSize = .5f)
+            GhostButton(onClick = {
+                investmentViewModel.navigator.navigate(Routes.InvestmentDetails+"/${investment.id}")
+            }, text =  "Invest now", fractionalSize = .5f)
             Spacer(modifier = Modifier.height(13.dp))
         }
 

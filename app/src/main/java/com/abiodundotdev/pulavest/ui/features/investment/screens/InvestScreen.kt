@@ -22,11 +22,11 @@ import java.util.*
 
 @Composable
 fun InvestScreen(investmentId: Int, investmentViewModel: InvestmentViewModel) {
-
     val investmentState  = investmentViewModel.investmentState.collectAsState().value;
     val typography = MaterialTheme.typography;
     AppScaffold(appBar = { PAppTopAppBar {
-       Text(text = "Invest now")}
+       Text(text = "Invest now")
+    }
         })
      {
         InvestmentStateBuilder(investmentState = investmentState) {investments ->

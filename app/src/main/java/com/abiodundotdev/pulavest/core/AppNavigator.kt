@@ -18,4 +18,8 @@ class AppNavigator @Inject constructor(){
     fun navigate( route : String) {
         navController?.navigate(route)
     }
+
+    fun goBack() {
+        navController?.popBackStack()
+    }
 }

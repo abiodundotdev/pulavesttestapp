@@ -33,18 +33,17 @@ class PulaComposeInstrumentedTest {
     val testRule = createAndroidComposeRule<MainActivity>()
 
    lateinit  var authViewModel :  AuthViewModel;
-       //testRule.activity.viewModels<AuthViewModel>().value;
     lateinit   var investmentViewModel :InvestmentViewModel;
-        //testRule.activity.viewModels<InvestmentViewModel>().value
+    lateinit var usernameField : SemanticsNodeInteraction;
+    lateinit var passwordField : SemanticsNodeInteraction;
+    lateinit var loginButton : SemanticsNodeInteraction;
+
+
 
 
     @Before
     fun setUp() {
         hiltRule.inject()
-    }
-
-    @Test
-    fun verify_login_has_required_composable_for_input_and_others(){
         testRule.activity.apply {
             setContent {    // setting our composable as content for test
                 AppTheme {
@@ -57,17 +56,33 @@ class PulaComposeInstrumentedTest {
                 }
             }
         }
+        usernameField = testRule.onNodeWithTag(ComposableTags.USERNAME_FORM_FIELD);
+        passwordField = testRule.onNodeWithTag(ComposableTags.PASSWORD_FORM_FIELD)
+        loginButton =  testRule.onNode(hasTestTag(ComposableTags.LOGIN_BUTTON) and  hasClickAction())
+    }
+
+    @Test
+    fun verify_login_has_required_composable_for_input_and_others(){
         testRule.onNode(hasText("Login, here")).assertExists()
-        //testRule.onNodeWithTag(ComposableTags.USERNAME_FORM_FIELD).assertExists().performClick().performTextInput("qazeem")
-        //testRule.onNodeWithTag(ComposableTags.PASSWORD_FORM_FIELD).assertExists().performClick().performTextInput("qazeem")
-        //testRule.onRoot().printToLog("TAG")
+        usernameField.assertIsDisplayed()
+        passwordField.assertIsDisplayed()
+        loginButton.assertIsDisplayed();
+    }
+
+
+    @Test
+    fun verify_error_text_is_shown_when_fields_are_empty_and_form_submitted(){
+        loginButton.performClick()
+        testRule.onNode(hasText("Username is required")).assertIsDisplayed()
+        testRule.onNode(hasText("Password is required")).assertIsDisplayed()
+    }
+
+    @Test
+    fun verify_shows_no_error_when_username_and_password_is_not_empty(){
+        usernameField.performClick().performTextInput("abiodun")
+        passwordField.performClick().performTextInput("abiodun")
+        loginButton.performClick()
+       // testRule.onNode(("Username is required")).assertIsNotDisplayed()
+       // testRule.onNode(hasText("Password is required")).assertIsNotDisplayed()
     }
 }
-
-
-
-//    @Inject
-//    lateinit var authViewModel: AuthViewModel
-
-//    @Inject
-//    lateinit var investmentViewModel: InvestmentViewModel

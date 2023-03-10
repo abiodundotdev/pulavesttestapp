@@ -16,6 +16,12 @@ This repository is for PULA Android Assessment test
 - [For the figma design](https://www.figma.com/file/CoTZrBbpoLJb6uKuBHbxHt/PULA-INVEST?node-id=0%3A1&t=jArgLh2sFoW6231L-1)
 - [Download Apk](https://raw.githubusercontent.com/abiodundotdev/pulavesttestapp/main/buildapk/pulavest.apk)
 
+> To login to app use any details or use the one below below:
+```
+username : pulavest
+password : pulavest
+```
+
 ## Core Packages used
 - Retrofit for Network Call
 - Hilt for Dependency Injection 
